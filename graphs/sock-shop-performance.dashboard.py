@@ -75,8 +75,6 @@ def service_latency_graph(datasource, serviceTitle, serviceName):
         ],
     )
 
-datasource = "prometheus"
-rows = []
 services = [
         {"name": "catalogue", "title": "Catalogue"},
         {"name": "carts", "title": "Cart"},
@@ -87,8 +85,11 @@ services = [
         {"name": "front-end", "title": "Front End"},
 ]
 
-for service in services:
-    rows.append(service_row(datasource, service["title"], service["name"]))
+datasource = "prometheus"
+rows = [
+    service_row(datasource, service["title"], service["name"])
+    for service in services
+]
 
 dashboard = Dashboard(
     title="Sock Shop Performance",
